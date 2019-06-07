@@ -3,22 +3,21 @@ import styles from "./style/index.css"
 import { GridSquare, getColor } from "./TetrisBoardView";
 import _ from "lodash";
 
-function getRandomPiece(): Piece {
-    let idx = Math.floor(7 * Math.random());
-    return [
-        Piece.I,
-        Piece.O,
-        Piece.T,
-        Piece.J,
-        Piece.L,
-        Piece.S,
-        Piece.Z,
-    ][idx];
-}
+// for 7 bag system implemented after google form submission
+const NEW_BAG = [
+    Piece.I,
+    Piece.O,
+    Piece.T,
+    Piece.J,
+    Piece.L,
+    Piece.S,
+    Piece.Z,
+];
 
 export default class PieceQueue {
     readonly root: HTMLDivElement;
 
+    bag: Array<Piece>
 
     nextPeice: Piece;
     swapPiece: Piece | null;
@@ -67,15 +66,23 @@ export default class PieceQueue {
         }
         this.root.insertAdjacentElement('beforeend', nextTable);
 
-        this.nextPeice = getRandomPiece();
+        this.bag = _.cloneDeep(NEW_BAG);
+        this.nextPeice = this.getRandomPiece();
         this.swapPiece = null;
         this.rerender();
     }
 
+    getRandomPiece(): Piece {
+        if (this.bag.length <= 0) {
+            this.bag = _.cloneDeep(NEW_BAG);
+        }
+        let idx = Math.floor(Math.random()*this.bag.length);
+        return this.bag.splice(idx, 1)[0];
+    }
 
     getNextPeice() {
         let p = this.nextPeice;
-        this.nextPeice = getRandomPiece();
+        this.nextPeice = this.getRandomPiece();
         this.hasSwapped = false;
         this.rerender();
         return p;
@@ -92,7 +99,7 @@ export default class PieceQueue {
             ret = this.swapPiece;
         } else {
             ret = this.nextPeice;
-            this.nextPeice = getRandomPiece();
+            this.nextPeice = this.getRandomPiece();
         }
         this.swapPiece = p;
         this.rerender();
