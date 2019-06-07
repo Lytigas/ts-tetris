@@ -1,0 +1,148 @@
+.tetrisBoard {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    display: block;
+    position: relative;
+}
+.tetrisBoard tr {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.tetrisBoard td {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    width: 30px;
+    height: 30px;
+    background: #222;
+    border: 0.1px solid rgb(38, 168, 38);
+    /* border: none; */
+}
+
+.tetrisBoard td.dropTarget {
+    position: relative;
+}
+
+.tetrisBoard td.dropTarget:after {
+    content: " ";
+    z-index: 10;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* COLORS */
+td.Red {
+    background-color: red;
+}
+
+td.Blue {
+    background-color: cyan;
+}
+
+td.Yellow {
+    background-color: yellow;
+}
+
+td.Orange {
+    background-color: orange;
+}
+
+td.Green {
+    background-color: green;
+}
+
+td.Purple {
+    background-color: purple;
+}
+
+td.DarkBlue {
+    background-color: blue;
+}
+
+.ScoringWidget {
+    margin-top: 20px;
+    margin-left: 20px;
+    display: block;
+    min-width: 80px;
+    font-family: sans-serif;
+    font-weight: 600;
+    padding: 40px;
+    background: #ccc;
+}
+
+.ScoringWidget div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.AppContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.gameOverSplash {
+    color: #eee;
+    font-size: 2em;
+    font-weight: 600;
+    font-family: sans-serif;
+    position: relative;
+    z-index: 10;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.85)
+}
+
+.gameOverSplash * {
+    margin: 2px;
+    padding: .5em;
+}
+
+.gameOverSplash button {
+    color: inherit;
+    font-weight: inherit;
+    padding: 10px;
+    background: rgb(38, 168, 38);
+    border-radius: 10px;
+    border: none;
+}
+
+.gameOverSplash button:hover {
+    background: rgb(38, 133, 38);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.pieceQueue {
+    margin-left: 20px;
+    display: block;
+    min-width: 80px;
+    font-family: sans-serif;
+    font-weight: 600;
+    padding: 40px;
+    padding-top: 10px;
+    background: #ccc;
+}
+
+.pieceQueue h4 {
+    font-family: inherit;
+    font-weight: inherit;
+    padding-bottom: 0;
+    margin: 15px 0 5px 0;
+}
